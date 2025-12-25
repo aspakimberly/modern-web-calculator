@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Royal Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="royal-shell" aria-label="Royal Calculator Shell">
+      <div class="ornate" aria-hidden="true"></div>
+      <div class="sparkles" aria-hidden="true"></div>
+
+      <div class="calculator" role="application" aria-label="Royal Calculator">
+        <div class="top">
+          <div class="expr" id="expr" aria-live="polite"></div>
+          <div class="value" id="value" aria-live="polite">0</div>
+        </div>
+
+        <!-- Layout EXACTLY like the reference photo -->
+        <div class="keys" aria-label="Calculator keys">
+          <!-- Row 1 -->
+          <button class="key top" data-action="clear">C</button>
+          <button class="key top" data-op="÷">÷</button>
+          <button class="key top" data-op="×">×</button>
+          <button class="key back" data-action="back" aria-label="Backspace">
+            <svg viewBox="0 0 48 32" aria-hidden="true">
+              <path d="M14 6 H40 a4 4 0 0 1 4 4 v12 a4 4 0 0 1-4 4 H14 L4 16 Z"></path>
+              <path d="M28 12 l8 8 M36 12 l-8 8"></path>
+            </svg>
+          </button>
+
+          <!-- Row 2 -->
+          <button class="key" data-digit="7">7</button>
+          <button class="key" data-digit="8">8</button>
+          <button class="key" data-digit="9">9</button>
+          <button class="key op bar" data-op="-">−</button>
+
+          <!-- Row 3 -->
+          <button class="key" data-digit="4">4</button>
+          <button class="key" data-digit="5">5</button>
+          <button class="key" data-digit="6">6</button>
+          <button class="key op" data-op="+">+</button>
+
+          <!-- Row 4 -->
+          <button class="key" data-digit="1">1</button>
+          <button class="key" data-digit="2">2</button>
+          <button class="key" data-digit="3">3</button>
+          <button class="key equals" data-action="equals">=</button>
+
+          <!-- Row 5 -->
+          <button class="key" data-action="percent">%</button>
+          <button class="key" data-digit="0">0</button>
+          <button class="key" data-digit=".">.</button>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

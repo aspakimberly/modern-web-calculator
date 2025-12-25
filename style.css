@@ -1,0 +1,566 @@
+/* =========================
+   ROYAL CALCULATOR (PURE CSS)
+   Updates requested:
+   - Separate CSS file
+   - Brighter glow, richer gold
+   - Silver lining ALWAYS visible (subtle), brighter on hover
+   - Redder royal vibe overall
+   - Equals button = pure gold
+   - Ornamental edges stronger + symmetric arc/curve-within-curve filigree
+   ========================= */
+
+:root{
+  --bg-1:#120008;
+  --bg-2:#070012;
+
+  --gold-1:#fff6cc;
+  --gold-2:#ffd36f;
+  --gold-3:#e7b94e;
+  --gold-4:#b97a18;
+  --gold-5:#6a3d0c;
+
+  --velvet-1:#ff405a;
+  --velvet-2:#b10027;
+  --velvet-3:#5a0016;
+  --velvet-4:#2b000b;
+
+  --panel:#0c0b10;
+  --key:#15151a;
+  --key-2:#1d1d24;
+
+  --ink:#f4f6fb;
+
+  --silver-a: rgba(245,248,255,.42);
+  --silver-b: rgba(200,210,230,.22);
+  --silver-c: rgba(255,255,255,.12);
+
+  --op-blue: rgba(110,170,255,.98);
+
+  --radius-outer: 34px;
+  --radius-inner: 26px;
+  --radius-key: 22px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+
+  /* more royal red overall, less pure black */
+  background:
+    radial-gradient(900px 520px at 50% 18%, rgba(255,80,110,.22), transparent 62%),
+    radial-gradient(900px 620px at 20% 80%, rgba(255,214,120,.14), transparent 60%),
+    radial-gradient(1100px 720px at 80% 85%, rgba(255,40,90,.16), transparent 62%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2) 55%, #04000a);
+  color:var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  padding:28px;
+}
+
+.wrap{
+  width:min(420px, 92vw);
+}
+
+.royal-shell{
+  position:relative;
+  border-radius: var(--radius-outer);
+  padding:18px;
+
+  /* brighter outer glow */
+  filter:
+    drop-shadow(0 32px 70px rgba(0,0,0,.62))
+    drop-shadow(0 0 32px rgba(255,190,90,.22))
+    drop-shadow(0 0 46px rgba(255,70,120,.16));
+}
+
+/* Outer gold frame */
+.royal-shell::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: var(--radius-outer);
+  background:
+    /* crimson underglow */
+    radial-gradient(150% 120% at 50% 10%, rgba(255,70,120,.55), transparent 62%),
+    radial-gradient(130% 120% at 45% 95%, rgba(255,220,140,.22), transparent 60%),
+
+    /* polished gold */
+    linear-gradient(135deg,
+      var(--gold-1),
+      var(--gold-2) 18%,
+      var(--gold-3) 42%,
+      #ffd86d 58%,
+      var(--gold-4) 78%,
+      var(--gold-5) 100%),
+
+    /* micro texture */
+    repeating-linear-gradient(45deg,
+      rgba(255,255,255,.08) 0 2px,
+      rgba(0,0,0,.07) 2px 4px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.58),
+    inset 0 -10px 26px rgba(0,0,0,.40),
+    inset 0 0 0 2px rgba(255,255,255,.18),
+    inset 0 0 0 10px rgba(150,80,10,.14),
+    0 26px 85px rgba(0,0,0,.64),
+    0 0 46px rgba(255,210,110,.18);
+  z-index:-3;
+}
+
+/* Inner velvet ring (more crimson) */
+.royal-shell::after{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius: calc(var(--radius-outer) - 10px);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16), rgba(0,0,0,0) 25%),
+    radial-gradient(140% 120% at 40% 10%, rgba(255,95,130,.62), transparent 58%),
+    linear-gradient(135deg, var(--velvet-1), var(--velvet-2) 38%, var(--velvet-3) 74%, var(--velvet-4));
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.24),
+    inset 0 -18px 34px rgba(0,0,0,.45),
+    inset 0 0 0 2px rgba(255,230,150,.20),
+    inset 0 0 0 9px rgba(0,0,0,.24),
+    0 0 34px rgba(255,60,120,.10);
+  z-index:-2;
+}
+
+/* =========================
+   ORNAMENTAL FILIGREE (stronger + symmetric)
+   - curve-within-curve / arc ornaments
+   ========================= */
+.ornate{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius: var(--radius-outer);
+  overflow:hidden;
+  z-index:-1;
+}
+
+/* main filigree carvings */
+.ornate::before{
+  content:"";
+  position:absolute;
+  inset:-55px;
+  background:
+    /* Corner rosettes (carved) */
+    radial-gradient(110px 110px at 16% 18%, rgba(255,250,205,.55), transparent 66%),
+    radial-gradient(140px 140px at 16% 18%, rgba(0,0,0,.30), transparent 68%),
+
+    radial-gradient(110px 110px at 84% 18%, rgba(255,250,205,.50), transparent 66%),
+    radial-gradient(140px 140px at 84% 18%, rgba(0,0,0,.28), transparent 68%),
+
+    radial-gradient(110px 110px at 16% 82%, rgba(255,250,205,.46), transparent 66%),
+    radial-gradient(140px 140px at 16% 82%, rgba(0,0,0,.28), transparent 68%),
+
+    radial-gradient(110px 110px at 84% 82%, rgba(255,250,205,.44), transparent 66%),
+    radial-gradient(140px 140px at 84% 82%, rgba(0,0,0,.28), transparent 68%),
+
+    /* Symmetric "arc within arc" ornaments (top) */
+    conic-gradient(from 225deg at 50% 6%,
+      rgba(255,255,255,0) 0 10%,
+      rgba(255,255,255,.20) 12%,
+      rgba(0,0,0,0) 18%,
+      rgba(255,255,255,.14) 22%,
+      rgba(0,0,0,0) 30%,
+      rgba(255,255,255,.18) 34%,
+      rgba(255,255,255,0) 44%),
+
+    conic-gradient(from 225deg at 50% 6%,
+      rgba(255,255,255,0) 0 6%,
+      rgba(255,240,170,.18) 8%,
+      rgba(0,0,0,0) 14%,
+      rgba(255,240,170,.12) 18%,
+      rgba(0,0,0,0) 26%,
+      rgba(255,240,170,.16) 30%,
+      rgba(255,255,255,0) 40%),
+
+    /* Symmetric "arc within arc" ornaments (bottom) */
+    conic-gradient(from 45deg at 50% 94%,
+      rgba(255,255,255,0) 0 10%,
+      rgba(255,255,255,.18) 12%,
+      rgba(0,0,0,0) 18%,
+      rgba(255,255,255,.12) 22%,
+      rgba(0,0,0,0) 30%,
+      rgba(255,255,255,.16) 34%,
+      rgba(255,255,255,0) 44%),
+
+    /* Side ornaments (left/right) */
+    conic-gradient(from 315deg at 6% 50%,
+      rgba(255,255,255,0) 0 12%,
+      rgba(255,255,255,.16) 14%,
+      rgba(0,0,0,0) 20%,
+      rgba(255,240,170,.14) 26%,
+      rgba(0,0,0,0) 32%,
+      rgba(255,255,255,.14) 38%,
+      rgba(255,255,255,0) 48%),
+    conic-gradient(from 135deg at 94% 50%,
+      rgba(255,255,255,0) 0 12%,
+      rgba(255,255,255,.16) 14%,
+      rgba(0,0,0,0) 20%,
+      rgba(255,240,170,.14) 26%,
+      rgba(0,0,0,0) 32%,
+      rgba(255,255,255,.14) 38%,
+      rgba(255,255,255,0) 48%),
+
+    /* fine etched lines */
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,.05) 0 2px,
+      rgba(0,0,0,0) 2px 14px);
+
+  opacity:.95;
+  filter: blur(.15px);
+  mix-blend-mode: soft-light;
+}
+
+/* bright gilded highlights on filigree */
+.ornate::after{
+  content:"";
+  position:absolute;
+  inset:-70px;
+  background:
+    radial-gradient(480px 300px at 50% 0%, rgba(255,235,165,.32), transparent 62%),
+    radial-gradient(480px 300px at 50% 100%, rgba(255,235,165,.26), transparent 60%),
+    radial-gradient(380px 280px at 0% 50%, rgba(255,70,120,.18), transparent 64%),
+    radial-gradient(380px 280px at 100% 50%, rgba(255,70,120,.14), transparent 64%),
+    linear-gradient(115deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.18) 42%,
+      rgba(255,220,120,.28) 50%,
+      rgba(255,255,255,.12) 58%,
+      rgba(255,255,255,0) 78%);
+  opacity:.80;
+  mix-blend-mode: screen;
+  filter: blur(.45px);
+}
+
+/* =========================
+   SPARKLES (brighter)
+   ========================= */
+.sparkles{
+  position:absolute;
+  inset:0;
+  border-radius: var(--radius-outer);
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.sparkles::before{
+  content:"";
+  position:absolute;
+  inset:-60px;
+  background:
+    radial-gradient(11px 11px at 18% 26%, rgba(255,255,255,.98), transparent 70%),
+    radial-gradient(8px 8px at 72% 18%, rgba(255,255,255,.94), transparent 72%),
+    radial-gradient(10px 10px at 84% 62%, rgba(255,255,255,.92), transparent 72%),
+    radial-gradient(7px 7px at 30% 78%, rgba(255,255,255,.96), transparent 72%),
+    radial-gradient(9px 9px at 58% 88%, rgba(255,255,255,.90), transparent 72%),
+    radial-gradient(7px 7px at 10% 62%, rgba(255,255,255,.88), transparent 72%),
+    radial-gradient(7px 7px at 92% 34%, rgba(255,255,255,.90), transparent 72%);
+  opacity:0;
+  animation: twinkle 2.9s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0 10px rgba(255,240,160,.95))
+    drop-shadow(0 0 18px rgba(255,210,110,.45));
+  mix-blend-mode: screen;
+}
+
+.sparkles::after{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  background:
+    linear-gradient(115deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.32) 40%,
+      rgba(255,220,120,.48) 48%,
+      rgba(255,255,255,.22) 56%,
+      rgba(255,255,255,0) 75%);
+  opacity:0;
+  transform: translateX(-55%) rotate(8deg);
+  animation: sweep 4.2s ease-in-out infinite;
+  mix-blend-mode: screen;
+  filter: blur(.35px);
+}
+
+@keyframes twinkle{
+  0%, 22% { opacity:0; }
+  32% { opacity:.72; }
+  54% { opacity:.22; }
+  68% { opacity:.80; }
+  84% { opacity:.18; }
+  100% { opacity:0; }
+}
+
+@keyframes sweep{
+  0%, 38% { opacity:0; transform: translateX(-65%) rotate(8deg); }
+  52% { opacity:.58; }
+  68% { opacity:0; transform: translateX(80%) rotate(8deg); }
+  100% { opacity:0; transform: translateX(80%) rotate(8deg); }
+}
+
+/* =========================
+   INNER CALCULATOR
+   ========================= */
+.calculator{
+  position:relative;
+  border-radius: var(--radius-inner);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,0) 40%),
+    radial-gradient(120% 100% at 50% 0%, rgba(255,210,120,.16), transparent 60%),
+    linear-gradient(180deg, #0b0a10, #08070d);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -20px 42px rgba(0,0,0,.62),
+    0 28px 75px rgba(0,0,0,.62);
+  padding:18px;
+  overflow:hidden;
+  z-index:1;
+}
+
+.top{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:10px 10px 14px;
+  border-radius:18px;
+  background:
+    radial-gradient(120% 150% at 50% 0%, rgba(255,60,120,.22), rgba(0,0,0,0) 58%),
+    linear-gradient(180deg, rgba(18,16,22,.96), rgba(10,9,14,.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -14px 26px rgba(0,0,0,.52),
+    0 0 26px rgba(255,70,120,.10);
+}
+
+.expr{
+  min-height:18px;
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color: rgba(245,240,245,.70);
+  text-align:right;
+  padding:0 4px;
+  user-select:none;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.value{
+  font-variant-numeric: tabular-nums;
+  font-size:42px;
+  font-weight:900;
+  text-align:right;
+  padding:0 4px;
+  color: var(--ink);
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.35),
+    0 0 22px rgba(255,210,120,.10);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.keys{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:14px;
+}
+
+/* =========================
+   KEYS
+   - Silver lining ALWAYS visible
+   - Hover: gold shine sweep + stronger silver
+   ========================= */
+.key{
+  height:74px;
+  border:0;
+  border-radius: var(--radius-key);
+  cursor:pointer;
+  position:relative;
+  user-select:none;
+
+  color: var(--ink);
+  font-size:30px;
+  font-weight:800;
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,0) 45%),
+    linear-gradient(180deg, var(--key-2), var(--key));
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -10px 18px rgba(0,0,0,.60),
+    0 14px 26px rgba(0,0,0,.40);
+
+  transition: transform .08s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+/* ALWAYS-ON subtle silver lining */
+.key::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: var(--radius-key);
+  pointer-events:none;
+  box-shadow:
+    inset 0 0 0 2px var(--silver-a),
+    inset 0 0 0 4px var(--silver-b);
+  opacity:.72;
+  transition: opacity .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+/* Hover gold sweep */
+.key::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: var(--radius-key);
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(115deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.26) 34%,
+      rgba(255,220,120,.62) 46%,
+      rgba(255,255,255,.22) 58%,
+      rgba(255,255,255,0) 80%);
+  transform: translateX(-55%);
+  filter: blur(.25px);
+  mix-blend-mode: screen;
+  transition: opacity .18s ease;
+}
+
+.key:hover{
+  filter: brightness(1.10);
+}
+
+.key:hover::before{
+  opacity:1;
+  animation: keySweep .72s ease forwards;
+}
+
+.key:hover::after{
+  opacity:1;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.92),
+    inset 0 0 0 4px rgba(205,214,235,.40),
+    0 0 34px rgba(255,210,110,.24);
+}
+
+@keyframes keySweep{
+  from { transform: translateX(-60%); }
+  to   { transform: translateX(60%); }
+}
+
+.key:active{
+  transform: translateY(1px) scale(.995);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 -6px 14px rgba(0,0,0,.65),
+    0 10px 18px rgba(0,0,0,.34);
+}
+
+/* Top row icons stay bluish like reference */
+.key.top{
+  color: var(--op-blue);
+}
+
+/* Operators: ruby accents */
+.key.op{
+  color: rgba(255,238,210,.94);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,0) 42%),
+    linear-gradient(180deg, rgba(145,0,35,.94), rgba(65,0,18,.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -12px 22px rgba(0,0,0,.62),
+    0 16px 30px rgba(0,0,0,.45);
+}
+
+.key.bar{
+  font-size:42px;
+  line-height:0;
+}
+
+/* Backspace icon */
+.key.back{
+  display:grid;
+  place-items:center;
+}
+.back svg{
+  width:34px;
+  height:24px;
+  opacity:.98;
+}
+.back path{
+  fill:none;
+  stroke: var(--op-blue);
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* =========================
+   EQUALS = PURE GOLD HERO BUTTON
+   ========================= */
+.key.equals{
+  grid-column: 4;
+  grid-row: 4 / 6;
+  height: calc(74px * 2 + 14px);
+  border-radius: 26px;
+
+  font-size:36px;
+  font-weight:950;
+  color:#2a1400; /* engraved look on gold */
+
+  background:
+    radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,.55), rgba(0,0,0,0) 58%),
+    linear-gradient(180deg, var(--gold-1), var(--gold-2) 28%, var(--gold-3) 55%, var(--gold-4) 82%, var(--gold-5));
+
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.50),
+    inset 0 -18px 26px rgba(0,0,0,.22),
+    0 22px 42px rgba(0,0,0,.55),
+    0 0 40px rgba(255,210,110,.28);
+}
+
+/* keep silver lining on equals but make it warmer */
+.key.equals::after{
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.55),
+    inset 0 0 0 4px rgba(255,240,200,.22);
+  opacity:.85;
+}
+
+.key.equals:hover::after{
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.92),
+    inset 0 0 0 5px rgba(255,240,200,.32),
+    0 0 44px rgba(255,210,110,.34);
+}
+
+/* small screens */
+@media (max-width: 420px){
+  .value{ font-size:38px; }
+  .key{ height:68px; }
+  .key.equals{ height: calc(68px * 2 + 14px); }
+}
+
+/* caption */
+.caption{
+  margin-top:12px;
+  text-align:center;
+  color: rgba(245,238,245,.65);
+  font-size:12px;
+  letter-spacing:.05em;
+  user-select:none;
+}
